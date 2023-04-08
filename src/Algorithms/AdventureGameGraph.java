@@ -6,81 +6,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import textadventureprototype.Player;
 
-/**
- *
- * @author Valeri
- */
 public class AdventureGameGraph {
+
+    Player player = new Player();
 
     private Map<String, List<Neighbor>> graph;
 
     public AdventureGameGraph() {
+        player.hp = 10;
+        player.strength = 20;
+        player.charisma = 15;
+        player.intelligence = 20;
+        player.dexterity = 5;
         graph = new HashMap<>();
-        Map<String, List<Neighbor>> graph = new HashMap<>();
-        graph.put("cityStreets", new ArrayList<>(Arrays.asList(
-                new Neighbor("north", 1),
-                new Neighbor("east", 2),
-                new Neighbor("west", 3),
-                new Neighbor("south", 4))));
-        graph.put("cityHall", new ArrayList<>(Arrays.asList(
-                new Neighbor("cityHallMagistrate", 1),
-                new Neighbor("cityHallMagistrateOffice", 2))));
-        graph.put("pub", new ArrayList<>(Arrays.asList(
-                new Neighbor("pubAdventurers", 1),
-                new Neighbor("pubUnusual", 2),
-                new Neighbor("pubBeer", 3),
-                new Neighbor("pubDeludedWoman", 4),
-                new Neighbor("pubRebels", 5),
-                new Neighbor("pubRipoff", 6))));
-        graph.put("library", new ArrayList<>(Arrays.asList(
-                new Neighbor("libraryConfrontation", 1),
-                new Neighbor("libraryInquiry", 2),
-                new Neighbor("libraryLost", 3),
-                new Neighbor("libraryLostContinuation", 4),
-                new Neighbor("libraryTreat", 5),
-                new Neighbor("libraryTreatContinuation", 6),
-                new Neighbor("libraryTreatDeparture", 7),
-                new Neighbor("libraryFalseRemorse", 8),
-                new Neighbor("libraryGutting", 9))));
-        graph.put("garrison", new ArrayList<>(Arrays.asList(
-                new Neighbor("garrisonSoldiers", 1),
-                new Neighbor("garrisonCommisar", 2),
-                new Neighbor("garrisonDeafVeteran", 3),
-                new Neighbor("garrisonCommisarStateOfAffairs", 4),
-                new Neighbor("garrisonCommisarInquiry", 5),
-                new Neighbor("garrisonCommisarWork", 6),
-                new Neighbor("garrisonCommisarBrother", 7))));
-        graph.put("deludedWoman", new ArrayList<>(Arrays.asList(
-                new Neighbor("deludedWoman", 1))));
-        graph.put("blacksmith", new ArrayList<>(Arrays.asList(
-                new Neighbor("blacksmith", 1))));
-        graph.put("win", new ArrayList<>(Arrays.asList(
-                new Neighbor("toTitleScreen", 1))));
         graph.put("home", new ArrayList<>(Arrays.asList(
-                new Neighbor("wakeUpCallRecollection", 1),
-                new Neighbor("wakeUpCallWindow", 2),
-                new Neighbor("wakeUpCallKitchen", 3),
-                new Neighbor("wakeUpCallDrawer", 4),
-                new Neighbor("exitHut", 5))));
-        graph.put("monsterFakeHydra", new ArrayList<>(Arrays.asList(
-                new Neighbor("playerAttack", 1),
-                new Neighbor("monsterAttack", 2),
-                new Neighbor("win", 3),
-                new Neighbor("lose", 4))));
+                new Neighbor("wakeUpCallRecollection", 1, 5),
+                new Neighbor("wakeUpCallWindow", 2, 10),
+                new Neighbor("wakeUpCallKitchen", 3, 15),
+                new Neighbor("wakeUpCallDrawer", 4, 20),
+                new Neighbor("exitHut", 5, 25))));
+        printGraph();
     }
 
     public void printGraph() {
         for (String vertex : graph.keySet()) {
             System.out.print(vertex + " -> ");
             for (Neighbor neighbor : graph.get(vertex)) {
-                System.out.print(neighbor.vertex + "(" + neighbor.distance + ") ");
+                System.out.print(neighbor.vertex + "(" + neighbor.distance + ", " + neighbor.time + ") ");
             }
             System.out.println();
         }
     }
 
-    public void dijkstra(String start, String end) {
+    public String dijkstra(String start, String end) {
         Map<String, Integer> distances = new HashMap<>();
         Map<String, String> previous = new HashMap<>();
         PriorityQueue<VertexDistance> queue = new PriorityQueue<>();
@@ -97,11 +57,6 @@ public class AdventureGameGraph {
             previous.put(vertex, null);
             timeSpent.put(vertex, 0); // initialize time spent to 0 for all vertices
         }
-// В началото, да се предостави избор за статистика, лимит от точки разпределяне на различни статистики,ако се изпълняват изискванията да се мине от едно място на друго, да се преминава
-// If in a given path there is a mob that is easily beaten
-// wEight of the nodes can be a funciton of на героя. Той има статистика, да може и дане може да я мине, ако има определена статистика. (You need ot pass this if you have 17 attack. If not, I don't), randomization
-//Initially, have it return static values. THen, accept parameters. Then, show how long it is and what sequence to pass through. Shortest path algorithms - take a look at others.
-
         while (!queue.isEmpty()) {
             VertexDistance current = queue.poll();
             if (current.vertex.equals(end)) {
@@ -117,32 +72,87 @@ public class AdventureGameGraph {
                     System.out.print(path.get(i) + " ");
                 }
                 int totalTimeSpent = timeSpent.get(end); // calculate total time spent
-                System.out.println("Total time spent: " + totalTimeSpent);
-                return;
+                // System.out.println("Total time spent: " + totalTimeSpent);
+                return "Total time spent: " + totalTimeSpent;
             }
             for (Neighbor neighbor : graph.get(current.vertex)) {
-                int distance = distances.get(current.vertex) + neighbor.distance;
-                if (distance < distances.get(neighbor.vertex)) {
-                    distances.put(neighbor.vertex, distance);
-                    previous.put(neighbor.vertex, current.vertex);
-                    queue.add(new VertexDistance(neighbor.vertex, distance));
-                    timeSpent.put(neighbor.vertex, timeSpent.get(current.vertex) + neighbor.time); // increment time spent for neighbor vertex
+                int requiredStrength = 0; // default value for required strength
+                int requiredDexterity = 0; // default value for required dexterity
+                int requiredIntelligence = 0;
+                int requiredCharisma = 0;
+                switch (neighbor.vertex) {
+                    case "wakeUpCallRecollection":
+                        requiredStrength = 10;
+                        break;
+                    case "wakeUpCallWindow":
+                        requiredDexterity = 15;
+                        break;
+                    case "wakeUpCallKitchen":
+                        requiredStrength = 15;
+                        break;
+                    case "wakeUpCallDrawer":
+                        requiredDexterity = 20;
+                        break;
+                }
+                if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity) {
+                    int distance = distances.get(current.vertex) + neighbor.distance;
+                    int time = timeSpent.get(current.vertex) + neighbor.time; // increment time spent for neighbor vertex
+
+// get required stats for the next node
+                    switch (neighbor.vertex) {
+                        case "wakeUpCallRecollection":
+                            requiredStrength = 10;
+                            requiredDexterity = 0;
+                            requiredIntelligence = 0;
+                            requiredCharisma = 0;
+                            break;
+                        case "wakeUpCallWindow":
+                            requiredStrength = 0;
+                            requiredDexterity = 15;
+                            requiredIntelligence = 0;
+                            requiredCharisma = 0;
+                            break;
+                        case "wakeUpCallKitchen":
+                            requiredStrength = 0;
+                            requiredDexterity = 0;
+                            requiredIntelligence = 10;
+                            requiredCharisma = 0;
+                            break;
+                        case "wakeUpCallDrawer":
+                            requiredStrength = 0;
+                            requiredDexterity = 0;
+                            requiredIntelligence = 0;
+                            requiredCharisma = 5;
+                            break;
+                        default:
+                            break;
+                    }
+// check if player meets required stats for next node
+                    if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity && player.intelligence >= requiredIntelligence && player.charisma >= requiredCharisma) {
+                        if (distance < distances.get(neighbor.vertex)) {
+                            distances.put(neighbor.vertex, distance);
+                            previous.put(neighbor.vertex, current.vertex);
+                            queue.add(new VertexDistance(neighbor.vertex, distance));
+                            timeSpent.put(neighbor.vertex, time);
+                        }
+                    } else {
+                        System.out.println("Cannot proceed to " + neighbor.vertex + ". Required stats: Strength " + requiredStrength + ", Dexterity " + requiredDexterity + ", Intelligence " + requiredIntelligence + ", Charisma " + requiredCharisma);
+                    }
                 }
             }
+
         }
-
-        System.out.println("No path found");
-
-        // if end vertex not reached, no path found
+        // System.out.println();
+        return "No path found";
     }
-}
+
     class Neighbor {
 
         String vertex;
         int distance;
         int time;
 
-        public Neighbor(String vertex, int distance) {
+        public Neighbor(String vertex, int distance, int time) {
             this.vertex = vertex;
             this.distance = distance;
             this.time = time;
@@ -164,6 +174,10 @@ public class AdventureGameGraph {
         public int compareTo(VertexDistance other) {
             return Integer.compare(this.distance, other.distance);
         }
+
+    }
+}
+
 
     }
 
