@@ -9,18 +9,17 @@ public class TextAdventurePrototype {
     ChoiceHandler cHandler = new ChoiceHandler(); // instantiating the Choice handler
     TextAdventurePrototypeUI UI = new TextAdventurePrototypeUI();
     VisibilityManager vm = new VisibilityManager(UI);
-    Story story = new Story(this, vm, UI); // the this keyword points to the class in question. In this case, it is
+    Story story = new Story(this, vm, UI); // the this keyword points to the class in question
     String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
+    AdventureGameGraph graph = new AdventureGameGraph();
+    String message = graph.dijkstra("wakeUpHut", "monster");
 
     public static void main(String[] args) {
-        AdventureGameGraph graph = new AdventureGameGraph();
-        graph.printGraph();
-        graph.dijkstra("wakeUpHut", "monster");
         new TextAdventurePrototype();
     }
 
-    public TextAdventurePrototype() {
-        UI.CreateUI(cHandler);
+    public TextAdventurePrototype() { //constructor
+        UI.CreateUI(cHandler, message);
         story.defaultSetup();
         vm.showTitleScreen();
     }
