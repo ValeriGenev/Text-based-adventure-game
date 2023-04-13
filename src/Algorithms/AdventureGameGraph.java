@@ -19,14 +19,68 @@ public class AdventureGameGraph {
         player.strength = 20;
         player.charisma = 15;
         player.intelligence = 20;
-        player.dexterity = 5;
+        player.dexterity = 15;
         graph = new HashMap<>();
         graph.put("home", new ArrayList<>(Arrays.asList(
-                new Neighbor("wakeUpCallRecollection", 1, 5),
-                new Neighbor("wakeUpCallWindow", 2, 10),
-                new Neighbor("wakeUpCallKitchen", 3, 15),
-                new Neighbor("wakeUpCallDrawer", 4, 20),
-                new Neighbor("exitHut", 5, 25))));
+                new Neighbor("castle", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("forest", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("wakeUpCallRecollection", 3, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+                new Neighbor("wakeUpCallWindow", 4, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+                new Neighbor("wakeUpCallKitchen", 5, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+                new Neighbor("wakeUpCallDrawer", 6, 1, 2, 3, 4, 5, 6, 7, 8, 9))));
+        graph.put("castle", new ArrayList<>(Arrays.asList(
+                new Neighbor("monster", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("goblinCombat", 2, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("alternativeMageCombat", 3, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("alternativePaladinCombat", 4, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("alternativeRangerCombat", 5, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("alternativeMonkCombat", 6, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+        graph.put("forest", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("monster", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("rabbitCombat", 3, 10, 11, 11, 11, 11, 1, 2, 3, 4))));
+        graph.put("monster", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("playerAttack", 3, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("monsterAttack", 4, 10, 11, 11, 11, 11, 1, 2, 3, 4))));
+        graph.put("wakeUpCallRecollection", new ArrayList<>(Arrays.asList(
+                new Neighbor("wakeUpCallWindow", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("wakeUpCallKitchen", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4))));
+        graph.put("wakeUpCallWindow", new ArrayList<>(Arrays.asList(
+                new Neighbor("wakeUpCallRecollection", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+        graph.put("wakeUpCallKitchen", new ArrayList<>(Arrays.asList(
+                new Neighbor("wakeUpCallRecollection", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("wakeUpCallDrawer", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4))));
+        graph.put("wakeUpCallDrawer", new ArrayList<>(Arrays.asList(
+                new Neighbor("wakeUpCallKitchen", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+
+        graph.put("north", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+        graph.put("east", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+        graph.put("west", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))
+        );
+        graph.put("south", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))
+        );
+
+        graph.put("rabbitCombat", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("win", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("lose", 3, 15, 12, 12, 12, 12, 2, 3, 4, 5)))
+        );
+        graph.put("exitHut", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))
+        );
+        graph.put("goblinCombat", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                new Neighbor("win", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4),
+                new Neighbor("lose", 3, 15, 11, 11, 11, 11, 1, 2, 3, 4))));
+        graph.put("win", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+        graph.put("lose", new ArrayList<>(Arrays.asList(
+                new Neighbor("home", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
         printGraph();
     }
 
@@ -76,71 +130,33 @@ public class AdventureGameGraph {
                 return "Total time spent: " + totalTimeSpent;
             }
             for (Neighbor neighbor : graph.get(current.vertex)) {
-                int requiredStrength = 0; // default value for required strength
-                int requiredDexterity = 0; // default value for required dexterity
-                int requiredIntelligence = 0;
-                int requiredCharisma = 0;
-                switch (neighbor.vertex) {
-                    case "wakeUpCallRecollection":
-                        requiredStrength = 10;
-                        break;
-                    case "wakeUpCallWindow":
-                        requiredDexterity = 15;
-                        break;
-                    case "wakeUpCallKitchen":
-                        requiredStrength = 15;
-                        break;
-                    case "wakeUpCallDrawer":
-                        requiredDexterity = 20;
-                        break;
-                }
-                if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity) {
-                    int distance = distances.get(current.vertex) + neighbor.distance;
-                    int time = timeSpent.get(current.vertex) + neighbor.time; // increment time spent for neighbor vertex
+                int requiredStrength = neighbor.requiredStrength; // default value for required strength
+                int requiredDexterity = neighbor.requiredDexterity; // default value for required dexterity
+                int requiredIntelligence = neighbor.requiredIntelligence;
+                int requiredCharisma = neighbor.requiredCharisma;
 
-// get required stats for the next node
-                    switch (neighbor.vertex) {
-                        case "wakeUpCallRecollection":
-                            requiredStrength = 10;
-                            requiredDexterity = 0;
-                            requiredIntelligence = 0;
-                            requiredCharisma = 0;
-                            break;
-                        case "wakeUpCallWindow":
-                            requiredStrength = 0;
-                            requiredDexterity = 15;
-                            requiredIntelligence = 0;
-                            requiredCharisma = 0;
-                            break;
-                        case "wakeUpCallKitchen":
-                            requiredStrength = 0;
-                            requiredDexterity = 0;
-                            requiredIntelligence = 10;
-                            requiredCharisma = 0;
-                            break;
-                        case "wakeUpCallDrawer":
-                            requiredStrength = 0;
-                            requiredDexterity = 0;
-                            requiredIntelligence = 0;
-                            requiredCharisma = 5;
-                            break;
-                        default:
-                            break;
+                // check if player meets required stats for next node
+                if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity
+                        && player.intelligence >= requiredIntelligence && player.charisma >= requiredCharisma) {
+                    int distance = distances.get(current.vertex) + neighbor.distance;
+                    int time = timeSpent.get(current.vertex) + neighbor.time; // increment time spent for neighbor
+                    // vertex
+                    if (distance < distances.get(neighbor.vertex)) {
+                        distances.put(neighbor.vertex, distance);
+                        previous.put(neighbor.vertex, current.vertex);
+                        queue.add(new VertexDistance(neighbor.vertex, distance));
+                        timeSpent.put(neighbor.vertex, time);
+                        player.strength += neighbor.strengthGain;
+                        player.charisma += neighbor.charismaGain;
+                        player.intelligence += neighbor.intelligenceGain;
+                        player.dexterity += neighbor.dexterityGain;
                     }
-// check if player meets required stats for next node
-                    if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity && player.intelligence >= requiredIntelligence && player.charisma >= requiredCharisma) {
-                        if (distance < distances.get(neighbor.vertex)) {
-                            distances.put(neighbor.vertex, distance);
-                            previous.put(neighbor.vertex, current.vertex);
-                            queue.add(new VertexDistance(neighbor.vertex, distance));
-                            timeSpent.put(neighbor.vertex, time);
-                        }
-                    } else {
-                        System.out.println("Cannot proceed to " + neighbor.vertex + ". Required stats: Strength " + requiredStrength + ", Dexterity " + requiredDexterity + ", Intelligence " + requiredIntelligence + ", Charisma " + requiredCharisma);
-                    }
+                } else {
+                    System.out.println("Cannot proceed to " + neighbor.vertex + ". Required stats: Strength "
+                            + requiredStrength + ", Dexterity " + requiredDexterity + ", Intelligence "
+                            + requiredIntelligence + ", Charisma " + requiredCharisma);
                 }
             }
-
         }
         // System.out.println();
         return "No path found";
@@ -151,11 +167,29 @@ public class AdventureGameGraph {
         String vertex;
         int distance;
         int time;
+        int requiredStrength;
+        int requiredDexterity;
+        int requiredIntelligence;
+        int requiredCharisma;
+        int strengthGain;
+        int dexterityGain;
+        int intelligenceGain;
+        int charismaGain;
 
-        public Neighbor(String vertex, int distance, int time) {
+        public Neighbor(String vertex, int distance, int time, int requiredStrength, int requiredDexterity,
+                int requiredIntelligence, int requiredCharisma, int strengthGain, int dexterityGain,
+                int intelligenceGain, int charismaGain) {
             this.vertex = vertex;
             this.distance = distance;
             this.time = time;
+            this.requiredStrength = requiredStrength;
+            this.requiredDexterity = requiredDexterity;
+            this.requiredIntelligence = requiredIntelligence;
+            this.requiredCharisma = requiredCharisma;
+            this.strengthGain = strengthGain;
+            this.dexterityGain = dexterityGain;
+            this.intelligenceGain = intelligenceGain;
+            this.charismaGain = charismaGain;
         }
 
     }
@@ -178,6 +212,4 @@ public class AdventureGameGraph {
     }
 }
 
-
-    }
 
