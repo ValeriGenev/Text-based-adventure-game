@@ -14,7 +14,7 @@ public class VisibilityManager {
         UI = userInterface;
     }
 
-    public void showTitleScreen() {
+     public void showTitleScreen() {
         //whenever I want to display the title screen, I need to call this method
         UI.titleNamePanel.setVisible(true);
         UI.startButtonPanel.setVisible(true);
@@ -29,11 +29,12 @@ public class VisibilityManager {
         //whenever I want to display the title screen, I need to call this method
         UI.titleNamePanel.setVisible(false);
         UI.startButtonPanel.setVisible(false);
-        //hide the panels
+        //show the panels
         UI.mainTextPanel.setVisible(true);
-        UI.choiceButtonPanel.setVisible(false);
+        UI.choiceButtonPanel.setVisible(true);
         UI.playerPanel.setVisible(true);
         UI.graphPanel.setVisible(true);
     }
 }
+
 
