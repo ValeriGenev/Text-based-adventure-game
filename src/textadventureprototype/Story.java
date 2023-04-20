@@ -1,4 +1,4 @@
-//*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,6 +13,8 @@ import AdditionalPackages.MonsterAlternativeMage;
 import AdditionalPackages.MonsterAlternativeMonk;
 import AdditionalPackages.MonsterAlternativePaladin;
 import AdditionalPackages.MonsterAlternativeRanger;
+import AdditionalPackages.MonsterSoldier;
+import AdditionalPackages.SoldierScimitarWeapon;
 
 public class Story {
 
@@ -99,14 +101,11 @@ public class Story {
             case "pub":
                 pub();
                 break;
-   //         case "library":
-    //            library();
-     //           break;
-            case "cityHallMessengerChaosForm":
-                cityHallMessengerChaosForm();
+            case "cityHallDefenders":
+                cityHallDefenders();
                 break;
-            case "cityHallMessengerSurrender":
-                cityHallMessengerSurrender();
+            case "cityHallMagistrateMessengerChaos":
+                cityHallMagistrateMessengerChaos();
                 break;
             case "cityHallMagistrateMessengerEscape":
                 cityHallMagistrateMessengerEscape();
@@ -120,18 +119,6 @@ public class Story {
             case "cityHallMagistrate":
                 cityHallMagistrateInquiry();
                 break;
-                /*
-            case "libraryConfrontation":
-                libraryConfrontation();
-                break;
-            case "libraryInquiry":
-                libraryInquiry();
-                break;
-            case "libraryLost":
-                libraryLost();
-                break;
-
-                /// */
             case "pubCapture":
                 pubCapture();
                 break;
@@ -156,26 +143,6 @@ public class Story {
             case "pubRun":
                 pubRun();
                 break;
-            /*    
-            case "libraryLostContinuation":
-                libraryLostContinuation();
-                break;
-            case "libraryTreat":
-                libraryTreat();
-                break;
-            case "libraryTreatContinuation":
-                libraryTreatContinuation();
-                break;
-            case "libraryTreatDeparture":
-                libraryTreatContinuation();
-                break;
-            case "libraryFalseRemorse":
-                libraryFalseRemorse();
-                break;
-            case "libraryGutting":
-                libraryGutting();
-                break;
-                //// */
             case "garrisonSoldiers":
                 garrisonSoldiers();
                 break;
@@ -209,11 +176,47 @@ public class Story {
             case "loseBySuffocation":
                 loseBySuffocation();
                 break;
-                case "loseByBleedingOut":
+            case "loseByBleedingOut":
                 loseByBleedingOut();
                 break;
             case "wakeUpLookAroundHopeless":
                 wakeUpLookAroundHopeless();
+                break;
+            case "wakeUpHouse":
+                wakeUpHouse();
+                break;
+            case "garrisonCommisarLeave":
+                garrisonCommisarLeave();
+                break;
+            case "garrisonSoldiersCombat":
+                garrisonSoldiersCombat();
+                break;
+            case "playerAttackSoldier":
+                playerAttackSoldier();
+                break;
+            case "monsterAttackSoldier":
+                monsterAttackSoldier();
+                break;
+            case "garrisonSoldiersExplanation":
+                garrisonSoldiersExplanation();
+                break;
+            case "AdventurersMonkLocation":
+                AdventurersMonkLocation();
+                break;
+            case "AdventurersPaladinLocation":
+                AdventurersPaladinLocation();
+                break;
+            case "AdventurersRangerLocation":
+                AdventurersRangerLocation();
+                break;
+            case "AdventurersMageLocation":
+                AdventurersMageLocation();
+                break;
+            case "AdventurersTransition":
+                AdventurersTransition();
+                break;
+            case "cityHallEquipment":
+                cityHallEquipment();
                 break;
         }
     }
@@ -237,9 +240,8 @@ public class Story {
     }
 
     public void wakeUpLookAround() {
-        // item taken or have a weapon equipped
         UI.mainTextArea.setText(
-                "You take a look to your right a notice a golden trinket hanging on the oposite wall. You take it.");
+                "You take a look to your right a notice a golden trinket hanging on the oposite wall. It is of no use. It seems that you have wasted your precious time.");
         UI.choice1.setText("Take another look of your residence before it collapses.");
         UI.choice2.setText(
                 "Go outside right now. The creaking is getting overwhelming. The place is about to crush you under its weight");
@@ -267,7 +269,7 @@ public class Story {
         game.nextPosition4 = "loseBySuffocation";
     }
 
-    public void wakeUpLookAroundHopeless() {
+    public void wakeUpLookAroundHopeless() { // not yet
 
         UI.mainTextArea.setText(
                 "There is nothing of value to acquire. A redudant realization to make, given that your previous home is being destroyed in front of your eyes.\n You hear a loud creak nearby. A moment later you are being crushed under a wall.");
@@ -308,14 +310,14 @@ public class Story {
         UI.choice2.setText(
                 "The pub is filled with brigands and drunkards day and night, but assuming it to not be fortified by now would be unreasonable");
         UI.choice3.setText(
-                "The library has always been a safe haven for everyone willing to take refuge within its walls. Perhaps the mages there can help me live through the siege");
-        UI.choice4.setText(
                 "Going to the garrison can be a gamble. \n If the building hasn't been overrun yet, I can better equip myself and perhaps even find someone to help me out navigate this mess.");
+        UI.choice4.setText(
+                "");
 
         game.nextPosition1 = "cityHall";
         game.nextPosition2 = "pub";
-        game.nextPosition3 = "library";
-        game.nextPosition4 = "garrison";
+        game.nextPosition3 = "garrison";
+        game.nextPosition4 = "";
     }
 
     public void garrison() {
@@ -327,12 +329,12 @@ public class Story {
         UI.choice2.setText("In spite of your worst guesses, you can hear conversations nearby. Are those soldiers?");
         UI.choice3.setText(
                 "After some searching, you take the steps to the Commisar's office. Did he survive the assault?");
-        UI.choice4.setText("The armory is one of the first places I should visit.");
+        UI.choice4.setText("");
 
         game.nextPosition1 = "garrisonDeafVeteran";
         game.nextPosition2 = "garrisonSoldiers";
         game.nextPosition3 = "garrisonCommisar";
-        game.nextPosition4 = "garrisonArmory";
+        game.nextPosition4 = "";
 
     }
 
@@ -346,9 +348,41 @@ public class Story {
         UI.choice3.setText("Leave this place immediately, while they are still recovering from the surprise.");
         UI.choice4.setText("");
 
-        game.nextPosition1 = "garrisonSoldiers";
+        game.nextPosition1 = "garrisonSoldiersExplanation";
         game.nextPosition2 = "garrisonSoldiersCombat";
-        game.nextPosition3 = "garrisonEscape";
+        game.nextPosition3 = "garrison";
+        game.nextPosition4 = "";
+    }
+
+    public void garrisonSoldiersExplanation() {
+        player.currentWeapon = new SoldierScimitarWeapon();
+        UI.mainTextArea.setText(
+                "The officer gives you his blade and tell you that they can't be of assistance to you. The sergeant gives you his scimitar and wishes you good luck. You are, once again, on your own.");
+        UI.choice1.setText(
+                "You have no other choice but to return to the garrison.");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "garrison";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
+
+    public void garrisonSoldiersModified() {
+
+        UI.mainTextArea.setText(
+                "Congratulations! You just slaughtered an innocent man in cold blood. His comrade just passed out of his wounds and is also probably dead. Now what?");
+        UI.choice1.setText(
+                "Leave this place immediately, there might be more on the way.");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "garrison";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
         game.nextPosition4 = "";
 
     }
@@ -363,8 +397,24 @@ public class Story {
         UI.choice4.setText("");
 
         game.nextPosition1 = "garrisonCommisarDisguise";
-        game.nextPosition2 = "garrisonCommisarLookAround";
+        game.nextPosition2 = "garrisonCommisarLeave";
         game.nextPosition3 = "garrisonCommisarLeave";
+        game.nextPosition4 = "";
+
+    }
+
+    public void garrisonCommisarLeave() {
+
+        UI.mainTextArea.setText("There is nothing to be found. How unfortunate...");
+        UI.choice1
+                .setText("Perhaps you can disguise as him and take advantage of the chaos in order to escape quickly.");
+        UI.choice2.setText("Return to the garrison. Perhaps there's more to be found.");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "garrisonCommisarDisguise";
+        game.nextPosition2 = "garrison";
+        game.nextPosition3 = "";
         game.nextPosition4 = "";
 
     }
@@ -437,12 +487,27 @@ public class Story {
                 "Your hands write down gently:'We nothing more to discuss, I will be seeing you another time.'");
         UI.choice4.setText("You decide not to bother and just put him out of his misery");
 
-        game.nextPosition1 = "AdventurersMage";
-        game.nextPosition2 = "AdventurersMage";
-        game.nextPosition3 = "AdventurersRanger";
-        game.nextPosition4 = "AdventurersMonkLocation";
+        game.nextPosition1 = "AdventurersTransition";
+        game.nextPosition2 = "AdventurersTransition";
+        game.nextPosition3 = "AdventurersTransition";
+        game.nextPosition4 = "AdventurersTransition";
 
-        // to be completed. Perhaps adding a companion would mean a big boost in stats
+    }
+
+    public void AdventurersTransition() {
+
+        UI.mainTextArea.setText(
+                "He looks distracted and your gestures don't seem to phase. When you finish your sentence, he grabs your hand and explains to you that there is no time for any of this. He informs you that there are four leaders of the invasion taking place. He supposes that if you take out even one of them, everything would be over.");
+        UI.choice1.setText("He wants you to know about the Ranger.");
+        UI.choice2.setText("He wants you to know about the Mage.");
+        UI.choice3.setText(
+                "He wants you to know about the Paladin.");
+        UI.choice4.setText("He wants you to know about the Monk.");
+
+        game.nextPosition1 = "AdventurersRanger";
+        game.nextPosition2 = "AdventurersMage";
+        game.nextPosition3 = "AdventurersPaladin";
+        game.nextPosition4 = "AdventurersMonk";
 
     }
 
@@ -459,28 +524,36 @@ public class Story {
         game.nextPosition1 = "pubEscape";
         game.nextPosition2 = "pubConvincing";
         game.nextPosition3 = "pubFight";
-        game.nextPosition4 = "west";
+        game.nextPosition4 = "";
 
     }
 
     public void pubEscape() {
         player.hp -= 10;
         UI.hpLabelNumber.setText("" + player.hp); // add death condition later
-        UI.mainTextArea.setText(
-                "Fortunately enough, your feet can carry you far enough away from your potential assailants. What do I do now?");
-        UI.choice1.setText(
-                "The city halls are should be a safe place for me to reside in. Perhaps heading there would secure my chance of survival through the night");
-        UI.choice4.setText(
-                "");
-        UI.choice2.setText(
-                "The library has always been a safe haven for everyone willing to take refuge within its walls. Perhaps the mages there can help me live through the siege");
-        UI.choice3.setText(
-                "Going to the garrison can be a gamble. \n If the building hasn't been overrun yet, I can better equip myself and perhaps even find someone to help me out navigate this mess.");
-        game.nextPosition1 = "cityHall";
-        game.nextPosition2 = "library";
-        game.nextPosition3 = "garrison";
-        game.nextPosition4 = "";
+        if (player.hp < 1) {
+            UI.mainTextArea.setText("On your way out, you were killed by the vagrants. Better luck next time.");
+            game.nextPosition1 = "lose";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        } else {
+            UI.mainTextArea.setText(
+                    "Fortunately enough, your feet can carry you far enough away from your potential assailants. What do I do now?");
+            UI.choice1.setText(
+                    "The city halls are should be a safe place for me to reside in. Perhaps heading there would secure my chance of survival through the night");
+            UI.choice4.setText(
+                    "");
+            UI.choice2.setText(
+                    "Going to the garrison can be a gamble. \n If the building hasn't been overrun yet, I can better equip myself and perhaps even find someone to help me out navigate this mess.");
+            UI.choice3.setText(
+                    "Going to the garrison can be a gamble. \n If the building hasn't been overrun yet, I can better equip myself and perhaps even find someone to help me out navigate this mess.");
+            game.nextPosition1 = "cityHall";
+            game.nextPosition2 = "garrison";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
 
+        }
     }
 
     public void pubConvincing() {
@@ -555,6 +628,74 @@ public class Story {
 
     }
 
+    public void AdventurersMageLocation() {
+
+        UI.mainTextArea.setText(
+                "There is she. Kill her and put an end to this assault!");
+        UI.choice1.setText(
+                "The mage notices you and starts preparing its defences.");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "alternativeMageCombat";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
+    public void AdventurersRangerLocation() {
+
+        UI.mainTextArea.setText(
+                "There is she. Kill her and put an end to this assault!");
+        UI.choice1.setText(
+                "'Accoring to latest reports, she was last seen pillaging some houses in the rich neighborhood. Hurry and you might catch her.'");
+        UI.choice2.setText("Ask about the paladin");
+        UI.choice3.setText("Ask about the ranger");
+        UI.choice4.setText("Ask about the monk");
+
+        game.nextPosition1 = "alternativeRangerCombat";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
+    public void AdventurersMonkLocation() {
+
+        UI.mainTextArea.setText(
+                "There is he. Kill him and put an end to this assault!");
+        UI.choice1.setText(
+                "The allegedly peaceful monk notices you and lunges towards you. This isn't going to be as easy as you were told to believe.");
+        UI.choice2.setText("Ask about the paladin");
+        UI.choice3.setText("Ask about the ranger");
+        UI.choice4.setText("Ask about the monk");
+
+        game.nextPosition1 = "alternativeMonkCombat";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
+    public void AdventurersPaladinLocation() {
+
+        UI.mainTextArea.setText(
+                "There is he. Kill him and put an end to this assault!");
+        UI.choice1.setText(
+                "The monstrous humanoid charges at you. Here we go.");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "alternativePaladinCombat";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+
+    }
+
     public void AdventurersPaladin() {
 
         UI.mainTextArea.setText(
@@ -575,10 +716,10 @@ public class Story {
     public void AdventurersRanger() {
         UI.mainTextArea.setText(
                 "'She looks like the leader of the group. She is the one who lead the assault on the garrison and ought to be the mastermind behind the whole affair.  \n I suggest murdering with her first.'");
-        UI.choice1.setText("'Tell me more about the mage.'");
-        UI.choice2.setText("'Inform me on what the paladin is like then.'");
-        UI.choice3.setText("'Is that her sitting in the corner, sipping on a glass of your fine beer?'");
-        UI.choice4.setText("'You haven't told me anythiing about the monk yet.'");
+        UI.choice1.setText("Ask about the mage");
+        UI.choice2.setText("Ask about the paladin");
+        UI.choice3.setText("He shows you a map of the city 'One of our scouts told me she was here.'");
+        UI.choice4.setText("Ask about the monk");
 
         game.nextPosition3 = "AdventurersMage";
         game.nextPosition2 = "AdventurersPaladin";
@@ -586,14 +727,13 @@ public class Story {
         game.nextPosition4 = "AdventurersMonk";
     }
 
-    // to be rewritten in the image of AdventurersPaladin
     public void AdventurersMonk() {
 
         UI.mainTextArea.setText(
                 "'The monk is, as you would expect, quiet, holds to himself, and generally seems to abstain from human interraction. He didn't even lay a finger on any of our boys. Provided that he is the weakest link of the chain, it might be a good idea to priorize him for destruction.'");
-        UI.choice1.setText("'Tell me more about the mage.'");
-        UI.choice2.setText("'Inform me on what the paladin is like then.'");
-        UI.choice3.setText("'Let me know what the ranger contributes to the party dinamic.'");
+        UI.choice1.setText("Ask about the mage");
+        UI.choice2.setText("Ask about the paladin");
+        UI.choice3.setText("Ask about the ranger");
         UI.choice4.setText(
                 "'He was, ironically, last seen by our shrine. Hurry and you might find him by there tending for the wounded.'");
 
@@ -612,12 +752,28 @@ public class Story {
         UI.choice2.setText("Check up on the defenders upstairs");
         UI.choice3.setText("Open the doors and let the invaders enter. We are done for anyways.");
         UI.choice4.setText(
-                "Grab that dead soldier's armor and brace for the worst. You can hear them battering the gates from the outside.");
+                "Check the armory. There might be something in there.");
 
         game.nextPosition1 = "cityHallMagistrate";
         game.nextPosition2 = "cityHallDefenders";
         game.nextPosition3 = "cityHallSurrender";
         game.nextPosition4 = "cityHallEquipment";
+
+    }
+
+    public void cityHallEquipment() {
+
+        UI.mainTextArea.setText(
+                "The place is, of course, scavenged, but you still manage to secure some pieces of armor.");
+        UI.choice1.setText("Return to the lobby of the city hall");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "cityHall";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
 
     }
 
@@ -708,11 +864,12 @@ public class Story {
         UI.choice3.setVisible(false);
     }
 
-    public void cityHallMessengerSurrender() {
+    public void cityHallMagistrateMessengerChaos() {
 
         UI.mainTextArea.setText(
                 "The lieutenant looks at you puzzled, but decides to oblige, given that he doesn't even know what else to do.");
-        UI.choice1.setText("You charge in the ensuing chaos, as the soldiers and citizens alike charge headlong into the enemy assailants.  \n Unfortunately for you, a friendly trooper stabs you through the artery and you find yourself lying helpless on the ground, as the battle rages on all around you.");
+        UI.choice1.setText(
+                "You charge in the ensuing chaos, as the soldiers and citizens alike charge headlong into the enemy assailants.  \n Unfortunately for you, a friendly trooper stabs you through the artery and you find yourself lying helpless on the ground, as the battle rages on all around you.");
         UI.choice2.setText("'Where can I find this woman'");
         UI.choice3.setText("'What are the whereabouts of the couple?'");
         UI.choice4.setText("");
@@ -728,177 +885,21 @@ public class Story {
 
     }
 
-    public void cityHallMessengerChaosForm() {
+    public void cityHallDefenders() {
 
         UI.mainTextArea.setText(
-                "It takes you a notable amount of time and some blood, sweat and tears, but have finally made it. The man sitting opposite you adds the report to the towering pile and looks at you expectingly.");
-        UI.choice1.setText("Filling out the form wouldn't hurt. <i>You</i> have no reason to doubt authority, right?");
-        UI.choice2.setText("'Where can I find this woman?'");
-        UI.choice3.setText("'What are the whereabouts of the couple?'");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "cityHallMessengerChaosForm";
-        game.nextPosition2 = "cityHallMagistrateWidow";
-        game.nextPosition3 = "cityHallMagistrateChildlessCouple";
-        game.nextPosition4 = "";
-    }
-/*
-    public void library() {
-
-        UI.mainTextArea.setText(
-                "The Librarian is not the one that would help me find the one. Or anyone for that matter. His knowledge of monsters, however, is immense. Perhaps he can tell me who did this to he woman in question");
-        UI.choice1.setText("I am not ready to face him yet. Perhaps a browse through the place is in order first.");
-        UI.choice2.setText("I am ready to face him. I think. I hope...");
-        UI.choice3.setText("Leave this cursed place");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "goblinCombat";
-        game.nextPosition2 = "west";
-        game.nextPosition3 = "libraryConfrontation";
-        game.nextPosition4 = "west";
-
-    }
-
-    public void libraryConfrontation() {
-        UI.mainTextArea.setText(
-                "The Librarian. A dirty creature with missing teeth and clothes soaked in filth. He mumbles something through his rancid breath.");
-        UI.choice1.setText("'Greetings, Librarian. I have an inquiry to make'");
-        UI.choice2.setText("'I have to go, never mind.'");
-        UI.choice3.setText("");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryInquiry";
-        game.nextPosition2 = "library";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-
-    }
-    // shorter(because I don't feel like writing a story for it anymore, and modify
-    // the graphs in case I have any sanity left. Also, upload the new vertices and
-    // ask Vesko whether we can make the game not travel from one verice to another
-    // when I don't have the required stats.)
-    public void libraryInquiry() {
-        UI.mainTextArea.setText(
-                "'Aha, I know you...' A flurry of incomprehensible words follows as you hold back your disgust. After you wipe your face from the man's repulsive spit, you brace yourself for another question.");
-        UI.choice1.setText("'Still, I have something I would like to learn some more information about...'");
-        UI.choice2.setText("'I have to go, never mind.'");
-        UI.choice3.setText("");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryLost";
-        game.nextPosition2 = "library";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryLost() {
-        UI.mainTextArea.setText(
-                "The hobo's gaze brightens upon reaching the realization you intend on staying in here for a little while. You make the unsettling revelation that the skin on his face shifts as if something underneath it has just started shifting around. His orifce slowly expands and starts to belch out some suprisingly sophisticated words.");
-        UI.choice1.setText("Stay awhile and listen for a little longer. He might say something of use.");
-        UI.choice2.setText(
-                "Enough of this. I need something and I cannot afford to listen any more of this creature's ramblings...");
-        UI.choice3.setText("Draw your hidden sheath. This ought to make him shut up");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryLostContinuation";
-        game.nextPosition2 = "libraryLost";
-        game.nextPosition3 = "libraryTreat";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryLostContinuation() {
-        UI.mainTextArea.setText(
-                "There is, of course, nothing of value to be heard. You have just lost 30 minutes of your precious remaining time on the Continent listening to this nonsense. Great...");
-        UI.choice1.setText("'As I was saying, I need some information. About a monster I'm hunting. Help me find it.");
-        UI.choice2.setText(
-                "Enough of this. I need something and I cannot afford to listen any more of this creature's ramblings...");
-        UI.choice3.setText("'I have to go, never mind.'");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryInquiry";
-        game.nextPosition2 = "libraryLost";
-        game.nextPosition3 = "library";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryTreat() {
-        UI.mainTextArea.setText(
-                "A justified bewildered reaction quickly takes over his grimace. This ought to make his answers more comprehensible.");
-        UI.choice1.setText("'Now, listen to me carefully and answer briefly if want to live.'");
-        UI.choice2.setText(
-                "'I am aware it is forbidden. I am partly responsible for the ban on pointy metal rods. Now tell me what I want to hear'");
-        UI.choice3.setText("Draw your hidden sheath. This ought to make him shut up");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryTreatContinuation";
-        game.nextPosition2 = "libraryLost";
-        game.nextPosition3 = "libraryTreat";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryTreatContinuation() {
-        UI.mainTextArea.setText("The man gazes you coldly. A simple, yet hard 'NO' escapes his lips");
-        UI.choice1.setText("Gut him.");
-        UI.choice2.setText(
-                "'I am aware my approach was a little confrontational, but I really need answers from you. Now.'");
-        UI.choice3.setText("Loosen your grip and get out of this place");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "libraryGutting";
-        game.nextPosition2 = "libraryFalseRemorse";
-        game.nextPosition3 = "libraryTreatDeparture";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryGutting() {
-        UI.mainTextArea.setText(
-                "You unsheathe your weapon and slice the man's throat. You press your hands on the wound and let him drown in his own blood.");
-        UI.choice1.setText("Game over?");
+                "The lieutenant tell you there is nothing to be done. He sends you back to the city hall, where you can be more useful.");
+        UI.choice1.setText("Obey him.");
         UI.choice2.setText("");
         UI.choice3.setText("");
         UI.choice4.setText("");
 
-        game.nextPosition1 = "lose";
+        game.nextPosition1 = "cityHall";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
     }
 
-    public void libraryFalseRemorse() {
-        UI.mainTextArea.setText("His look remains unyielding. His answer isn't changing anytime soon.");
-        UI.choice1.setText("Cut him open like a pig. He is of no use to you anyways.");
-        UI.choice2.setText(
-                "Leave him be. The library's doors will be closed for you from now on, but you can at least live knowing you aren't getting pursued by the law.");
-        UI.choice3.setText("");
-        UI.choice4.setText("");
-
-        game.nextPosition1 = "lose";
-        game.nextPosition2 = "pubFight";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-
-    }
-
-    public void libraryTreatDeparture() {
-        UI.mainTextArea.setText(
-                "He won't budge. I didn't want to visit him anyways<From now on, you will not be able to gain access to the secrets the Library might offer>");
-        UI.choice1.setText("Go out on the streets");
-        UI.choice2.setText("Head home");
-        UI.choice3.setText("Pay a visit to the pub");
-        UI.choice4.setText("Visit the Town Hall");
-
-        game.nextPosition1 = "pubFight";
-        game.nextPosition2 = "home";
-        game.nextPosition3 = "pub";
-        game.nextPosition4 = "cityHall";
-
-    }
- */
     public void alternativeRangerCombat() {
         monster = new MonsterAlternativeRanger();
         UI.mainTextArea.setText("It was unwise to anger the Ranger. Kill him before his arrows wear you down.");
@@ -959,8 +960,24 @@ public class Story {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
     }
+
+    public void garrisonSoldiersCombat() {
+        monster = new MonsterSoldier();
+        UI.mainTextArea.setText(
+                "You feel bad for butchering a man who is already so close to death. Still, you swing your weapon.");
+        UI.choice1.setText("Finish him.");
+        UI.choice2.setText("Try to escape combat");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        game.nextPosition1 = "playerAttackSoldier";
+        game.nextPosition2 = "attemptedEscape";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
+
     public void attemptedEscape() {
-        
+
         UI.mainTextArea.setText(
                 "Attempting escape wasn't the most brilliant of ideas. Perhaps you should have tried to see how it would play out. Your foe strikes you dead, because you tried to take the easy way out.");
         UI.choice1.setText("You have failed to complete your task. Maybe next time should be better.");
@@ -1004,7 +1021,7 @@ public class Story {
     }
 
     public void playerAttackMage() {
-        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage + player.strength); 
+        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage + player.strength);
         UI.mainTextArea.setText("You attacked the " + monster.name + " and inflicted " + playerDamage + " damage!");
         monster.hp -= playerDamage;
         UI.choice1.setText("Your turn to suffer!");
@@ -1050,7 +1067,7 @@ public class Story {
     }
 
     public void playerAttackRanger() {
-        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage + player.strength); 
+        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage + player.strength);
         UI.mainTextArea.setText("You attacked the " + monster.name + " and inflicted " + playerDamage + " damage!");
         monster.hp -= playerDamage;
         UI.choice1.setText("Your turn to suffer!");
@@ -1065,6 +1082,29 @@ public class Story {
             game.nextPosition4 = "";
         } else if (monster.hp < 1) {
             game.nextPosition1 = "win";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+
+    }
+
+    public void playerAttackSoldier() {
+        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage + player.strength);
+        UI.mainTextArea.setText("You attacked the " + monster.name + " and inflicted " + playerDamage + " damage!");
+        monster.hp -= playerDamage;
+        UI.choice1.setText("Your turn to suffer!");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+
+        if (monster.hp > 0) {
+            game.nextPosition1 = "monsterAttackSoldier";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        } else if (monster.hp < 1) {
+            game.nextPosition1 = "garrisonSoldiersModified";
             game.nextPosition2 = "";
             game.nextPosition3 = "";
             game.nextPosition4 = "";
@@ -1164,6 +1204,29 @@ public class Story {
 
     }
 
+    public void monsterAttackSoldier() {
+        int monsterDamage = new java.util.Random().nextInt(monster.attack);
+        UI.mainTextArea.setText(monster.attackMessage + "You received " + monsterDamage + " damage!");
+        player.hp -= monsterDamage;
+        UI.hpLabelNumber.setText("" + player.hp);
+        UI.choice1.setText("Your turn to strike!");
+        UI.choice2.setText("");
+        UI.choice3.setText("");
+        UI.choice4.setText("");
+        if (player.hp > 0) {
+            game.nextPosition1 = "garrisonSoldiersCombat";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        } else if (player.hp < 1) {
+            game.nextPosition1 = "lose";
+            game.nextPosition2 = "";
+            game.nextPosition3 = "";
+            game.nextPosition4 = "";
+        }
+
+    }
+
     public void win() {
 
         UI.mainTextArea.setText(
@@ -1214,6 +1277,7 @@ public class Story {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
     }
+
     public void loseByBleedingOut() {
 
         UI.mainTextArea.setText(
@@ -1241,4 +1305,3 @@ public class Story {
     }
 
 }
-
