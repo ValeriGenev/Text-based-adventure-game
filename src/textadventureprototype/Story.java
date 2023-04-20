@@ -31,11 +31,11 @@ public class Story {
     }
 
     public void defaultSetup() {
-        player.hp = 10;
+        player.hp = 100;
         player.strength = 20;
-        player.charisma = 15;
-        player.intelligence = 20;
-        player.dexterity = 5;
+        player.charisma = 30;
+        player.intelligence = 40;
+        player.dexterity = 30;
         UI.hpLabelNumber.setText("" + player.hp);
         player.currentWeapon = new DaggerWeapon();
         UI.weaponLabelName.setText(player.currentWeapon.name);
@@ -218,6 +218,12 @@ public class Story {
             case "cityHallEquipment":
                 cityHallEquipment();
                 break;
+            case "exitProgram":
+                exitProgram();
+                break;
+            case "attemptedEscape":
+                attemptedEscape();
+                break;
         }
     }
 
@@ -269,7 +275,7 @@ public class Story {
         game.nextPosition4 = "loseBySuffocation";
     }
 
-    public void wakeUpLookAroundHopeless() { // not yet
+    public void wakeUpLookAroundHopeless() {
 
         UI.mainTextArea.setText(
                 "There is nothing of value to acquire. A redudant realization to make, given that your previous home is being destroyed in front of your eyes.\n You hear a loud creak nearby. A moment later you are being crushed under a wall.");
@@ -1238,7 +1244,7 @@ public class Story {
         UI.choice3.setVisible(false);
         UI.choice4.setVisible(false);
 
-        game.nextPosition1 = "wakeUpHouse";
+        game.nextPosition1 = "toTitleScreen";
         game.nextPosition2 = "exitProgram";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
@@ -1247,7 +1253,7 @@ public class Story {
 
     public void lose() {
 
-        UI.mainTextArea.setText("You are dead");
+        UI.mainTextArea.setText("You are dead.");
         UI.choice1.setText("Start over?");
         UI.choice2.setText("Exit game?");
         UI.choice3.setText("");
