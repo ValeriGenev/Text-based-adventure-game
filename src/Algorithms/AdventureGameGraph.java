@@ -14,11 +14,11 @@ public class AdventureGameGraph {
         private Map<String, List<Neighbor>> graph;
 
         public AdventureGameGraph() {
-                player.hp = 10;
+                player.hp = 100;
                 player.strength = 20;
-                player.charisma = 15;
-                player.intelligence = 20;
-                player.dexterity = 15;
+                player.charisma = 30;
+                player.intelligence = 40;
+                player.dexterity = 30;
                 graph = new HashMap<>();
 
                 graph.put("wakeUpHouse", new ArrayList<>(Arrays.asList(
@@ -28,8 +28,8 @@ public class AdventureGameGraph {
                                 new Neighbor("exitHouse", 6, 1, 2, 3, 4, 5, 6, 7, 8, 9))));
                 graph.put("wakeUpLookAround", new ArrayList<>(Arrays.asList(
                                 new Neighbor("wakeUpBasement", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
-                                new Neighbor("wakeUpLookAroundHopeless", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4))));
-                new Neighbor("exitHouse", 2, 10, 11, 11, 11, 11, 1, 2, 3, 4);
+                                new Neighbor("wakeUpLookAroundHopeless", 2, 10, 10, 11, 11, 11, 1, 2, 3, 4))));
+                new Neighbor("exitHouse", 2, 10, 11, 10, 11, 11, 1, 2, 3, 4);
                 graph.put("wakeUpBasement", new ArrayList<>(Arrays.asList(
                                 new Neighbor("loseBySuffocation", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
                 graph.put("wakeUpLongsword", new ArrayList<>(Arrays.asList(
@@ -51,7 +51,8 @@ public class AdventureGameGraph {
                                 new Neighbor("garrisonSoldiersExplanation", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("garrisonSoldiersCombat", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 new Neighbor("garrisonSoldiersModified", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0);
-                graph.put("garrisonSoldiersExplanation", new ArrayList<>()); // should I try to connect something twice?
+                graph.put("garrisonSoldiersExplanation", new ArrayList<>((Arrays.asList(
+                                new Neighbor("garrison", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("garrisonCommisar", new ArrayList<>(Arrays.asList(
                                 new Neighbor("garrisonCommisarDisguise", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("garrisonCommisarLeave", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
@@ -78,7 +79,6 @@ public class AdventureGameGraph {
                                 new Neighbor("cityHall", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("garrison", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("lose", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
-                // graph.put("toTitleScreen", new ArrayList<>());
                 graph.put("pubConvincing", new ArrayList<>(Arrays.asList(
                                 new Neighbor("pubCapture", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("pubRun", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
@@ -119,16 +119,16 @@ public class AdventureGameGraph {
                                 new Neighbor("cityHallDefenders", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallSurrender", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallEquipment", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
-                graph.put("cityHallEquipment", new ArrayList<>()); // do I leave out nodes like this or do I conncect
-                                                                   // them to other nodes still? Also, do I need to add
-                // // duplicating nodes like in here?
+                graph.put("cityHallEquipment", new ArrayList<>((Arrays.asList(
+                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("cityHallMagistrateInquiry", new ArrayList<>(Arrays.asList(
                                 new Neighbor("cityHallMagistrateMessenger", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallDefenders", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHall", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallMagistrateOffice", new ArrayList<>(Arrays.asList(
                                 new Neighbor("cityHallMagistrateInquiry", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
-                // graph.put("loseByBleedingOut", new ArrayList<>());
+                graph.put("loseByBleedingOut", new ArrayList<>((Arrays.asList(
+                                new Neighbor("lose", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("cityHallMagistrateMessenger", new ArrayList<>(Arrays.asList(
                                 new Neighbor("cityHallMagistrateMessengerEscape", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallMagistrateMessengerChaos", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
@@ -137,7 +137,8 @@ public class AdventureGameGraph {
                                 new Neighbor("win", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallMagistrateMessengerChaos", new ArrayList<>(Arrays.asList(
                                 new Neighbor("loseByBleedingOut", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
-                graph.put("cityHallDefenders", new ArrayList<>());
+                graph.put("cityHallDefenders", new ArrayList<>((Arrays.asList(
+                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("alternativeRangerCombat", new ArrayList<>(Arrays.asList(
                                 new Neighbor("attemptedEscape", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("playerAttackRanger", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
@@ -187,8 +188,8 @@ public class AdventureGameGraph {
                                 new Neighbor("garrisonSoldiersCombat", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("win", new ArrayList<>(Arrays.asList(
                                 new Neighbor("wakeUpHouse", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
-                //graph.put("lose", new ArrayList<>(Arrays.asList(
-                        //        new Neighbor("wakeUpHouse", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
+                graph.put("lose", new ArrayList<>(Arrays.asList(
+                                new Neighbor("wakeUpHouse", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2))));
                 printGraph();
         }
 
@@ -208,7 +209,7 @@ public class AdventureGameGraph {
                 Map<String, String> previous = new HashMap<>();
                 PriorityQueue<VertexDistance> queue = new PriorityQueue<>();
                 Map<String, Integer> timeSpent = new HashMap<>(); // new map to track time spent
-
+                int totalTimeSpent = 0;
                 // Set initial distances and add starting vertex to queue
                 for (String vertex : graph.keySet()) {
                         if (vertex.equals(start)) {
@@ -222,6 +223,8 @@ public class AdventureGameGraph {
                 }
                 while (!queue.isEmpty()) {
                         VertexDistance current = queue.poll();
+                        System.out.println(timeSpent.get(current.vertex));
+                        
                         if (current.vertex.equals(end)) {
                                 // Found shortest path to end vertex
                                 List<String> path = new ArrayList<>();
@@ -234,8 +237,6 @@ public class AdventureGameGraph {
                                 for (int i = path.size() - 1; i >= 0; i--) {
                                         System.out.print(path.get(i) + " ");
                                 }
-                                int totalTimeSpent = timeSpent.get(end); // calculate total time spent
-                                // System.out.println("Total time spent: " + totalTimeSpent);
                                 return "Total time spent: " + totalTimeSpent;
                         }
                         for (Neighbor neighbor : graph.get(current.vertex)) {
@@ -244,48 +245,37 @@ public class AdventureGameGraph {
                                                                                     // dexterity
                                 int requiredIntelligence = neighbor.requiredIntelligence;
                                 int requiredCharisma = neighbor.requiredCharisma;
-
                                 // check if player meets required stats for next node
                                 if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity
                                                 && player.intelligence >= requiredIntelligence
                                                 && player.charisma >= requiredCharisma) {
                                         int distance = distances.get(current.vertex) + neighbor.distance;
-                                        int time = timeSpent.get(current.vertex) + neighbor.time; // increment time
-                                                                                                  // spent for neighbor
-                                        // vertex
-                                        if (distance < distances.get(neighbor.vertex)) {
-                                                distances.put(neighbor.vertex, distance);
-                                                previous.put(neighbor.vertex, current.vertex);
-                                                queue.add(new VertexDistance(neighbor.vertex, distance));
-                                                timeSpent.put(neighbor.vertex, time);
-                                                player.strength += neighbor.strengthGain;
-                                                player.charisma += neighbor.charismaGain;
-                                                player.intelligence += neighbor.intelligenceGain;
-                                                player.dexterity += neighbor.dexterityGain;
+                                        int time = timeSpent.get(current.vertex) + neighbor.time;
+                                        System.out.println(current.vertex);
+                                        totalTimeSpent += neighbor.time;
+                                        if (distances.size() == 0) {
+                                                if (distance < distances.get(neighbor.vertex)) {
+                                                        distances.put(neighbor.vertex, distance);
+                                                        previous.put(neighbor.vertex, current.vertex);
+                                                        queue.add(new VertexDistance(neighbor.vertex, distance));
+                                                        timeSpent.put(neighbor.vertex, time);
+                                                        player.strength += neighbor.strengthGain;
+                                                        player.charisma += neighbor.charismaGain;
+                                                        player.intelligence += neighbor.intelligenceGain;
+                                                        player.dexterity += neighbor.dexterityGain;
+                                                }
                                         }
                                 } else {
-                                        return "Cannot proceed to " + neighbor.vertex + ". Required stats: Strength "
+                                        return "Cannot proceed to " + neighbor.vertex
+                                                        + ". Required stats: Strength "
                                                         + requiredStrength + ", Dexterity " + requiredDexterity
                                                         + ", Intelligence "
-                                                        + requiredIntelligence + ", Charisma " + requiredCharisma; // will
-                                                                                                                   // this
-                                                                                                                   // even
-                                                                                                                   // work?
-                                                                                                                   // Please,
-                                                                                                                   // tell
-                                                                                                                   // me
-                                                                                                                   // it
-                                                                                                                   // will,
-                                                                                                                   // otherwise
-                                                                                                                   // I
-                                                                                                                   // will
-                                                                                                                   // go
-                                                                                                                   // fucking
-                                                                                                                   // ballistic
+                                                        + requiredIntelligence + ", Charisma "
+                                                        + requiredCharisma;
                                 }
                         }
                 }
-                return "No path found";
+                return "No path found" + "Total time spent: " + totalTimeSpent;
         }
 
         class Neighbor {
