@@ -30,7 +30,7 @@ public class TextAdventurePrototypeUI {
 
     public void CreateUI(ChoiceHandler cHandler, String message) {
 
-        window = new JFrame();
+               window = new JFrame();
         window.setSize(1920, 1080); // setting the size of the screen
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // making the screen closable
         window.getContentPane().setBackground(Color.BLACK);// setting the color of the window
@@ -86,10 +86,9 @@ public class TextAdventurePrototypeUI {
         mainTextArea.setFont(buttonFont);
         mainTextArea.setLineWrap(true); // Automatically formats longer text
         mainTextPanel.add(mainTextArea);
-        // Will shorten the names of the equipment later
-        // Tell me what you think of the color palette. I hope you like it
+
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(250, 350, 800, 250);
+        choiceButtonPanel.setBounds(250, 250, 800, 250);
         choiceButtonPanel.setBackground(Color.BLACK);
         choiceButtonPanel.setLayout(new GridLayout(4, 1));
         cont.add(choiceButtonPanel);
@@ -101,7 +100,8 @@ public class TextAdventurePrototypeUI {
         choice1.setForeground(new Color(0, 100, 0));
         choice1.setFocusPainted(false);
         choice1.addActionListener(cHandler);
-        choice1.setActionCommand("c1"); // The result will be the same regardless of the button pressed if this line wasn't typed in
+        choice1.setActionCommand("c1"); // The result will be the same regardless of the button pressed if this line
+                                        // wasn't typed in
         choiceButtonPanel.add(choice1);
 
         choice2 = new JButton("I BEG OF YOU");
@@ -111,7 +111,8 @@ public class TextAdventurePrototypeUI {
         choice2.setFont(buttonFont);
         choice2.setFocusPainted(false);
         choice2.addActionListener(cHandler);
-        choice2.setActionCommand("c2"); // The result will be the same regardless of the button pressed if this line wasn't typed in
+        choice2.setActionCommand("c2"); // The result will be the same regardless of the button pressed if this line
+                                        // wasn't typed in
         choiceButtonPanel.add(choice2);
 
         choice3 = new JButton("END MY SUFFERING");
@@ -121,7 +122,8 @@ public class TextAdventurePrototypeUI {
         choice3.setForeground(new Color(0, 100, 0));
         choice3.setFocusPainted(false);
         choice3.addActionListener(cHandler);
-        choice3.setActionCommand("c3"); // The result will be the same regardless of the button pressed if this line wasn't typed in
+        choice3.setActionCommand("c3"); // The result will be the same regardless of the button pressed if this line
+                                        // wasn't typed in
         choiceButtonPanel.add(choice3);
 
         choice4 = new JButton("STRANGER");
@@ -131,7 +133,8 @@ public class TextAdventurePrototypeUI {
         choice4.setForeground(new Color(0, 100, 0));
         choice4.setFocusPainted(false);
         choice4.addActionListener(cHandler);
-        choice4.setActionCommand("c4"); // The result will be the same regardless of the button pressed if this line wasn't typed in
+        choice4.setActionCommand("c4"); // The result will be the same regardless of the button pressed if this line
+                                        // wasn't typed in
         choiceButtonPanel.add(choice4);
 
         playerPanel = new JPanel();
@@ -200,17 +203,15 @@ public class TextAdventurePrototypeUI {
         charismaLabelName.setForeground(new Color(0, 100, 0));
         playerPanel.add(charismaLabelName);
 
-        window.setVisible(true);
-
         graphPanel = new JPanel();
-        graphPanel.setBounds(250, 350, 800, 250);// place a panel that displays the name of the graph
+        graphPanel.setBounds(250, 500, 800, 250);// place a panel that displays the name of the graph
         graphPanel.setBackground(Color.BLACK);
         graphLabel = new JLabel(message);
         graphLabel.setForeground(Color.WHITE);
-        graphLabel.setFont(titleFont);
+        graphLabel.setFont(buttonFont);
         graphPanel.add(graphLabel);
         cont.add(graphPanel);
-        //400, 500, 800, 900 - Coordinates for now
     }
 
 }
+
