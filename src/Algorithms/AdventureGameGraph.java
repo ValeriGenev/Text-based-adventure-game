@@ -120,11 +120,14 @@ public class AdventureGameGraph {
                                 new Neighbor("cityHallSurrender", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallEquipment", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallEquipment", new ArrayList<>((Arrays.asList(
-                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
+                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                                new Neighbor("cityHallMagistrate", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
+                                new Neighbor("cityHallDefenders", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0)))));
                 graph.put("cityHallMagistrateInquiry", new ArrayList<>(Arrays.asList(
                                 new Neighbor("cityHallMagistrateMessenger", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("cityHallDefenders", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
-                                new Neighbor("cityHall", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
+                                new Neighbor("cityHall", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
+                                new Neighbor("cityHallMagistrateInquiry", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallMagistrateOffice", new ArrayList<>(Arrays.asList(
                                 new Neighbor("cityHallMagistrateInquiry", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("loseByBleedingOut", new ArrayList<>((Arrays.asList(
@@ -138,7 +141,9 @@ public class AdventureGameGraph {
                 graph.put("cityHallMagistrateMessengerChaos", new ArrayList<>(Arrays.asList(
                                 new Neighbor("loseByBleedingOut", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallDefenders", new ArrayList<>((Arrays.asList(
-                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
+                                new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                                new Neighbor("pub", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
+                                new Neighbor("garrison", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("alternativeRangerCombat", new ArrayList<>(Arrays.asList(
                                 new Neighbor("attemptedEscape", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
                                 new Neighbor("playerAttackRanger", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
@@ -278,7 +283,7 @@ public class AdventureGameGraph {
                                 }
                         }
                 }
-                return "No path found" + "Total time spent: " + totalTimeSpent;
+                return "No path found! " + "Total time spent: " + totalTimeSpent;
         }
 
         class Neighbor {
