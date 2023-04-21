@@ -223,8 +223,7 @@ public class AdventureGameGraph {
                 }
                 while (!queue.isEmpty()) {
                         VertexDistance current = queue.poll();
-                        System.out.println(timeSpent.get(current.vertex));
-                        
+                        System.out.println("Current:" + current.vertex);
                         if (current.vertex.equals(end)) {
                                 // Found shortest path to end vertex
                                 List<String> path = new ArrayList<>();
@@ -240,6 +239,7 @@ public class AdventureGameGraph {
                                 return "Total time spent: " + totalTimeSpent;
                         }
                         for (Neighbor neighbor : graph.get(current.vertex)) {
+                                System.out.println("Current:" + neighbor.vertex);
                                 int requiredStrength = neighbor.requiredStrength; // default value for required strength
                                 int requiredDexterity = neighbor.requiredDexterity; // default value for required
                                                                                     // dexterity
@@ -249,22 +249,25 @@ public class AdventureGameGraph {
                                 if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity
                                                 && player.intelligence >= requiredIntelligence
                                                 && player.charisma >= requiredCharisma) {
+                                        System.out.println("We pass the node.");
                                         int distance = distances.get(current.vertex) + neighbor.distance;
                                         int time = timeSpent.get(current.vertex) + neighbor.time;
-                                        System.out.println(current.vertex);
-                                        totalTimeSpent += neighbor.time;
-                                        if (distances.size() == 0) {
-                                                if (distance < distances.get(neighbor.vertex)) {
-                                                        distances.put(neighbor.vertex, distance);
-                                                        previous.put(neighbor.vertex, current.vertex);
-                                                        queue.add(new VertexDistance(neighbor.vertex, distance));
-                                                        timeSpent.put(neighbor.vertex, time);
-                                                        player.strength += neighbor.strengthGain;
-                                                        player.charisma += neighbor.charismaGain;
-                                                        player.intelligence += neighbor.intelligenceGain;
-                                                        player.dexterity += neighbor.dexterityGain;
-                                                }
+                                        totalTimeSpent += time;
+
+                                        if (distances.containsKey(neighbor.vertex)
+                                                        && distance < distances.get(neighbor.vertex)) {
+                                                System.out.println("Put distance for neighbour: "
+                                                                + neighbor.vertex);
+                                                distances.put(neighbor.vertex, distance);
+                                                previous.put(neighbor.vertex, current.vertex);
+                                                queue.add(new VertexDistance(neighbor.vertex, distance));
+                                                timeSpent.put(neighbor.vertex, time);
+                                                player.strength += neighbor.strengthGain;
+                                                player.charisma += neighbor.charismaGain;
+                                                player.intelligence += neighbor.intelligenceGain;
+                                                player.dexterity += neighbor.dexterityGain;
                                         }
+
                                 } else {
                                         return "Cannot proceed to " + neighbor.vertex
                                                         + ". Required stats: Strength "
