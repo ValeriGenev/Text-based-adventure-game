@@ -11,14 +11,14 @@ public class TextAdventurePrototype {
     VisibilityManager vm = new VisibilityManager(UI);
     Story story = new Story(this, vm, UI); // the this keyword points to the class in question
     String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
-  AdventureGameGraph graph = new AdventureGameGraph();
+    AdventureGameGraph graph = new AdventureGameGraph();
     String message = graph.dijkstra("wakeUpHouse", "win");
 
     public static void main(String[] args) {
         new TextAdventurePrototype();
     }
 
-    public TextAdventurePrototype() { //constructor
+    public TextAdventurePrototype() { // constructor
         UI.CreateUI(cHandler, message);
         story.defaultSetup();
         vm.showTitleScreen();
@@ -35,7 +35,7 @@ public class TextAdventurePrototype {
                     break;
                 case "Start":
                     vm.showHutTitle();
-                    story.wakeUpHut();
+                    story.wakeUpHouse();
                     break;
                 case "c1":
                     story.selectPosition(nextPosition1); // selects the position indicated by the player's choices

@@ -20,7 +20,9 @@ public class TextAdventurePrototypeUI {
     JFrame window;
     Container cont;
     JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, graphPanel;
-    JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, strengthLabel, strengthLabelNumber, intelligenceLabel, intelligenceLabelName, dexterityLabel, dexterityLabelName, charismaLabel, charismaLabelName, graphLabel, graphLabelName;
+    JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, strengthLabel, strengthLabelNumber,
+            intelligenceLabel, intelligenceLabelName, dexterityLabel, dexterityLabelName, charismaLabel,
+            charismaLabelName, graphLabel, graphLabelName;
     Font titleFont = new Font("Calibri(Body)", Font.PLAIN, 90);// setting a font for the title screen
     Font buttonFont = new Font("Calibri(Body)", Font.PLAIN, 15);
     JButton startButton, exitButton, choice1, choice2, choice3, choice4;
@@ -30,7 +32,7 @@ public class TextAdventurePrototypeUI {
 
     public void CreateUI(ChoiceHandler cHandler, String message) {
 
-               window = new JFrame();
+        window = new JFrame();
         window.setSize(1920, 1080); // setting the size of the screen
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // making the screen closable
         window.getContentPane().setBackground(Color.BLACK);// setting the color of the window
@@ -75,12 +77,12 @@ public class TextAdventurePrototypeUI {
         cont.add(titleNamePanel);// creates a base on which I can place a panel
         cont.add(startButtonPanel);// places the start button panel on the screeen
         mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(100, 100, 600, 250);
+        mainTextPanel.setBounds(100, 100, 1050, 120);
         mainTextPanel.setBackground(Color.BLACK);
         cont.add(mainTextPanel);
 
         mainTextArea = new JTextArea("This is the main text area");
-        mainTextArea.setBounds(100, 100, 600, 250);
+        mainTextArea.setBounds(100, 100, 1050, 120);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
         mainTextArea.setFont(buttonFont);
@@ -214,4 +216,3 @@ public class TextAdventurePrototypeUI {
     }
 
 }
-
