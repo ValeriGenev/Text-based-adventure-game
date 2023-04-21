@@ -215,6 +215,7 @@ public class AdventureGameGraph {
                 PriorityQueue<VertexDistance> queue = new PriorityQueue<>();
                 Map<String, Integer> timeSpent = new HashMap<>(); // new map to track time spent
                 int totalTimeSpent = 0;
+                int totalDistance = 0;
                 String algorithmFeedback = "";
                 // Set initial distances and add starting vertex to queue
                 for (String vertex : graph.keySet()) {
@@ -243,6 +244,7 @@ public class AdventureGameGraph {
                                         System.out.print(path.get(i) + " ");
                                         algorithmFeedback += path.get(i) + " -> ";
                                 }
+                                algorithmFeedback += "\n" + "Total Distance: " + totalDistance;
                                 return algorithmFeedback + "\n" + "Total time spent: " + totalTimeSpent;
                         }
                         for (Neighbor neighbor : graph.get(current.vertex)) {
@@ -258,11 +260,10 @@ public class AdventureGameGraph {
                                         int distance = distances.get(current.vertex) + neighbor.distance;
                                         int time = timeSpent.get(current.vertex) + neighbor.time;
                                         totalTimeSpent += time;
+                                        totalDistance += distance;
 
                                         if (distances.containsKey(neighbor.vertex)
                                                         && distance < distances.get(neighbor.vertex)) {
-                                                System.out.println("Put distance for neighbour: "
-                                                                + neighbor.vertex);
                                                 distances.put(neighbor.vertex, distance);
                                                 previous.put(neighbor.vertex, current.vertex);
                                                 queue.add(new VertexDistance(neighbor.vertex, distance));
