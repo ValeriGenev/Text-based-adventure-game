@@ -59,7 +59,8 @@ public class AdventureGameGraph {
                 graph.put("garrisonCommisarLeave", new ArrayList<>(Arrays.asList(
                                 new Neighbor("garrisonCommisarDisguise", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("garrisonCommisarDisguise", new ArrayList<>(Arrays.asList(
-                                new Neighbor("garrisonCommisarGameOver", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
+                                new Neighbor("garrisonCommisarGameOver", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
+                                new Neighbor("pub", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("garrisonCommisarGameOver", new ArrayList<>(Arrays.asList(
                                 new Neighbor("lose", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("garrisonCommisarGameOverAlternative", new ArrayList<>(Arrays.asList(
@@ -142,7 +143,6 @@ public class AdventureGameGraph {
                                 new Neighbor("loseByBleedingOut", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0))));
                 graph.put("cityHallDefenders", new ArrayList<>((Arrays.asList(
                                 new Neighbor("cityHall", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
-                                new Neighbor("pub", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2),
                                 new Neighbor("garrison", 1, 5, 10, 10, 10, 10, 1, 1, 0, 2)))));
                 graph.put("alternativeRangerCombat", new ArrayList<>(Arrays.asList(
                                 new Neighbor("attemptedEscape", 3, 3, 3, 4, 5, 6, 7, 8, 9, 0),
