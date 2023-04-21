@@ -215,6 +215,7 @@ public class AdventureGameGraph {
                 PriorityQueue<VertexDistance> queue = new PriorityQueue<>();
                 Map<String, Integer> timeSpent = new HashMap<>(); // new map to track time spent
                 int totalTimeSpent = 0;
+                String algorithmFeedback = "";
                 // Set initial distances and add starting vertex to queue
                 for (String vertex : graph.keySet()) {
                         if (vertex.equals(start)) {
@@ -228,7 +229,6 @@ public class AdventureGameGraph {
                 }
                 while (!queue.isEmpty()) {
                         VertexDistance current = queue.poll();
-                        System.out.println("Current:" + current.vertex);
                         if (current.vertex.equals(end)) {
                                 // Found shortest path to end vertex
                                 List<String> path = new ArrayList<>();
@@ -238,13 +238,14 @@ public class AdventureGameGraph {
                                 }
                                 path.add(start);
                                 System.out.print("Shortest path from " + start + " to " + end + ": ");
+                                algorithmFeedback += "Shortest path from " + start + " to " + end + ": \n";
                                 for (int i = path.size() - 1; i >= 0; i--) {
                                         System.out.print(path.get(i) + " ");
+                                        algorithmFeedback += path.get(i) + " -> ";
                                 }
-                                return "Total time spent: " + totalTimeSpent;
+                                return algorithmFeedback + "\n" + "Total time spent: " + totalTimeSpent;
                         }
                         for (Neighbor neighbor : graph.get(current.vertex)) {
-                                System.out.println("Current:" + neighbor.vertex);
                                 int requiredStrength = neighbor.requiredStrength; // default value for required strength
                                 int requiredDexterity = neighbor.requiredDexterity; // default value for required
                                                                                     // dexterity
@@ -254,7 +255,6 @@ public class AdventureGameGraph {
                                 if (player.strength >= requiredStrength && player.dexterity >= requiredDexterity
                                                 && player.intelligence >= requiredIntelligence
                                                 && player.charisma >= requiredCharisma) {
-                                        System.out.println("We pass the node.");
                                         int distance = distances.get(current.vertex) + neighbor.distance;
                                         int time = timeSpent.get(current.vertex) + neighbor.time;
                                         totalTimeSpent += time;
@@ -274,7 +274,7 @@ public class AdventureGameGraph {
                                         }
 
                                 } else {
-                                        return "Cannot proceed to " + neighbor.vertex
+                                        return "Unfortunately you lost. Cannot proceed to " + neighbor.vertex
                                                         + ". Required stats: Strength "
                                                         + requiredStrength + ", Dexterity " + requiredDexterity
                                                         + ", Intelligence "

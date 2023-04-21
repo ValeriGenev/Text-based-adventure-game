@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,11 +25,11 @@ public class TextAdventurePrototypeUI {
     JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, graphPanel;
     JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, strengthLabel, strengthLabelNumber,
             intelligenceLabel, intelligenceLabelName, dexterityLabel, dexterityLabelName, charismaLabel,
-            charismaLabelName, graphLabel, graphLabelName;
+            charismaLabelName, graphLabelName;
     Font titleFont = new Font("Calibri(Body)", Font.PLAIN, 90);// setting a font for the title screen
     Font buttonFont = new Font("Calibri(Body)", Font.PLAIN, 15);
-    JButton startButton, exitButton, choice1, choice2, choice3, choice4;
-    JTextArea mainTextArea;
+    JButton startButton, exitButton, choice1, choice2, choice3, choice4, showAlgorithmButton;
+    JTextArea graphLabel, mainTextArea;
     int playerHP, enemyHP, playerDamage, enemyDamage, strength;
     String weapon, position;
 
@@ -208,11 +211,36 @@ public class TextAdventurePrototypeUI {
         graphPanel = new JPanel();
         graphPanel.setBounds(250, 500, 800, 250);// place a panel that displays the name of the graph
         graphPanel.setBackground(Color.BLACK);
-        graphLabel = new JLabel(message);
-        graphLabel.setForeground(Color.WHITE);
+
+        graphLabel = new JTextArea(message);
+        graphLabel.setBounds(250, 500, 800, 250);
+        graphLabel.setBackground(Color.black);
+        graphLabel.setForeground(Color.white);
         graphLabel.setFont(buttonFont);
+        graphLabel.setLineWrap(true); // Automatically formats longer text
+        graphLabel.setVisible(false);
+
+        // showAlgorithmButton.setBounds(250, 500, 800, 250);
+        showAlgorithmButton = new JButton("Run Algorithm");
+        showAlgorithmButton.setBackground(Color.black);
+        showAlgorithmButton.setBackground(Color.white);
+        showAlgorithmButton.setFont(buttonFont);
+        showAlgorithmButton.setForeground(new Color(0, 100, 0));
+        showAlgorithmButton.setFocusPainted(false);
+
+        showAlgorithmButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                graphLabel.setVisible(true);
+            }
+        });
+
+        graphPanel.add(showAlgorithmButton);
+
         graphPanel.add(graphLabel);
         cont.add(graphPanel);
+
     }
 
 }
